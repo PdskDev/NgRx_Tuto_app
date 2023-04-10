@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 import { changeUsername, initAction } from './state/01-actions';
 
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(initAction());
 
-    this.user = this.store.select((state: any) => state.root.user);
+    //this.user = this.store.select((state: any) => state.root.user);
+    //this.user = this.store.pipe(select((state: any) => state.root.user));
+    this.user = this.store.pipe(select((state: any) => state['root']['user']));
   }
 
   changeUserName(): void {
