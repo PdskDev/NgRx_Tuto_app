@@ -4,6 +4,7 @@ import { changeUsername, initAction } from './state/01-actions';
 
 import { IState } from './state/00-reducer';
 import { Observable } from 'rxjs';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'tutoNgRx';
-  public user: Observable<any> = {} as Observable<any>;
+  public user: Observable<User> = {} as Observable<User>;
 
   constructor(private store: Store<IState>) {}
   ngOnInit(): void {

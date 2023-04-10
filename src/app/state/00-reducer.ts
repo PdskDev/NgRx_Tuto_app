@@ -1,13 +1,12 @@
 import { ActionReducer, MetaReducer, createReducer, on } from '@ngrx/store';
 import { changeUsername, initAction } from './01-actions';
 
+import { User } from '../models/user';
+
 export interface IState {
   root: {
     appName: string;
-    user: {
-      isAdmin: boolean;
-      username: string;
-    };
+    user: User;
   };
 }
 
@@ -19,7 +18,7 @@ const initialState = {
   },
 };
 
-function log(reducer: ActionReducer<any>): ActionReducer<any> {
+function log(reducer: ActionReducer<IState>): ActionReducer<IState> {
   return (state, action) => {
     const currentState = reducer(state, action);
 
