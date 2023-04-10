@@ -1,6 +1,16 @@
 import { ActionReducer, MetaReducer, createReducer, on } from '@ngrx/store';
 import { changeUsername, initAction } from './01-actions';
 
+export interface IState {
+  root: {
+    appName: string;
+    user: {
+      isAdmin: boolean;
+      username: string;
+    };
+  };
+}
+
 const initialState = {
   appName: 'NgRx',
   user: {
