@@ -1,16 +1,24 @@
-import { ActionReducer, MetaReducer, createReducer, on } from '@ngrx/store';
+import {
+  Action,
+  ActionReducer,
+  MetaReducer,
+  createReducer,
+  on,
+} from '@ngrx/store';
 import { changeUsername, initAction } from './01-actions';
 
 import { User } from '../models/user';
 
 export interface IState {
-  root: {
-    appName: string;
-    user: User;
-  };
+  root: IRootState;
 }
 
-const initialState = {
+export interface IRootState {
+  appName: string;
+  user: User;
+}
+
+const initialState: IRootState = {
   appName: 'NgRx',
   user: {
     username: '',
@@ -34,9 +42,9 @@ function log(reducer: ActionReducer<IState>): ActionReducer<IState> {
 
 export const metaReducers: MetaReducer[] = [log];
 
-export const rootReducer = createReducer(
+export const rootReducer = createReducer<IRootState, Action>(
   initialState,
-  on(initAction, (state) => {
+  on(initAction, (state: IRootState) => {
     return {
       ...state,
       user: {
@@ -45,7 +53,7 @@ export const rootReducer = createReducer(
       },
     };
   }),
-  on(changeUsername, (state, props) => {
+  on(changeUsername, (state: IRootState, props) => {
     return {
       ...state,
       user: {

@@ -5,6 +5,7 @@ import { changeUsername, initAction } from './state/01-actions';
 import { IState } from './state/00-reducer';
 import { Observable } from 'rxjs';
 import { User } from './models/user';
+import { getUser } from './state/02-selectors';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
     //this.user = this.store.select((state: any) => state.root.user);
     //this.user = this.store.pipe(select((state: any) => state.root.user));
     //this.user = this.store.pipe(select((state: any) => state['root']['user']));
-    this.user = this.store.pipe(select((state: IState) => state.root.user));
+    //this.user = this.store.pipe(select((state: IState) => state.root.user));
+    this.user = this.store.pipe(select(getUser));
   }
 
   changeUserName(): void {
