@@ -1,8 +1,8 @@
-import { IRootState, IState } from './00-reducer';
+import { IRootState, IState, ROOT_FEATURE_KEY } from './00-reducer';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { createSelector } from '@ngrx/store';
-
-const selectRoot = (state: IState) => state.root;
+//const selectRoot = (state: IState) => state.root;
+const selectRoot = createFeatureSelector<IRootState>(ROOT_FEATURE_KEY);
 
 export const getUser = createSelector(
   selectRoot,

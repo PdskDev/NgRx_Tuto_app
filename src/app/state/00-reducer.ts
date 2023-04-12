@@ -9,8 +9,10 @@ import { changeUsername, initAction } from './01-actions';
 
 import { User } from '../models/user';
 
+export const ROOT_FEATURE_KEY = 'root';
+
 export interface IState {
-  root: IRootState;
+  readonly [ROOT_FEATURE_KEY]: IRootState;
 }
 
 export interface IRootState {
